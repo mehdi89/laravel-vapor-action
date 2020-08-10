@@ -7,7 +7,10 @@ LABEL maintainer="Claudio Dekker <claudio@ubient.net>"
 # Install required extenstions for laravel
 # https://laravel.com/docs/6.x#server-requirements
 RUN apk add oniguruma-dev libxml2-dev && \
-    docker-php-ext-install bcmath xml tokenizer mbstring gd
+    docker-php-ext-install bcmath xml tokenizer mbstring
+    
+RUN apk add --update --no-cache libpng-dev; \
+    docker-php-ext-install gd
 
 # Install Vapor + Prestissimo (parallel/quicker composer install)
 RUN set -xe && \
